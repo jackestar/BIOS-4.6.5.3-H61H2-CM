@@ -1,11 +1,14 @@
 # BIOS-4.6.5.3-H61H2-CM
 BIOS 4.6.5.3 H61H2-CM Descargar
 
-# Requerido 
--Rufus rufus-*.exe https://github.com/pbatard/rufus/releases/download/v3.16/rufus-3.16.exe
+# Flash OSless
 
+## Requerido 
 
-# Pasos a seguir
+- Rufus [Github](https://github.com/pbatard/rufus) [Pagina Web](rufus.ie)
+
+## Pasos a seguir
+
 1. -Descargar los datos relacionados.
   * ![Image text](https://github.com/smltrs0/BIOS-4.6.5.3-H61H2-CM/blob/main/InfoTutorial/1.jpg)
 3. -Formatear el pendrive utilizando rufus en el modo FreeDos. 
@@ -20,3 +23,18 @@ BIOS 4.6.5.3 H61H2-CM Descargar
 12. -Colocar el jumper de protección de las BIOS en su posicion original.
 
 Al encender el equipo tendras la tarjeta madre con las BIOS actuaizada.
+
+## Otras versiones
+
+backup 4.6.4 (incluye BIOS/ME/FD es el dump completo del chip)
+permite mas controls de la bios (overclocking etc...) (no Changelog disponible/encontrado)
+
+# Flash con linux
+
+## Pasos a seguir
+
+1. Asegurese de tener el jumper WP_BIOS (generalmente no esta populado) y MS_DIS desactivado (en posicion 2-3 si se quiere hacer backup o si genera problemas)
+2. pasar el parametro `iomem=relaxed` al kernel al inicio (de hacer falta) (esta es una medida de seguridad de linux)
+3. tener instalado flashrom (vease la documentacion de su distro para la instalacion)
+4. `sudo flashrom -p internal -c "MX25L3205D/MX25L3208D" -r backup.rom` (backup si se requiere)
+5. `sudo flashrom -p internal -c "MX25L3205D/MX25L3208D" -w BIOS.BIN`
